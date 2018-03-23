@@ -1,0 +1,1 @@
+https://datatables.net/examples/api/multi_filter.html

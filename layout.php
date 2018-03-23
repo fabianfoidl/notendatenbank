@@ -26,12 +26,28 @@
 		<script src="javascripts/bootstrap-quick-search.gz.js"></script>
 		<script src="javascripts/bootstrap-quick-search.min.js"></script>
 		
+		<!-- Featherlight Lightbox -->
+		<link href="//cdn.rawgit.com/noelboss/featherlight/1.7.12/release/featherlight.min.css" type="text/css" rel="stylesheet" />
+		
+		
+		<!-- Javascript Featherlight Lightbox - nach unten kopieren -->
+		<script src="//code.jquery.com/jquery-latest.js"></script>
+		<script src="//cdn.rawgit.com/noelboss/featherlight/1.7.12/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+		
 		<style>
 		
 			.container {
 				margin: 0 auto;
-				background-color: black;
+				//background-color: black;
+				border: 1px solid black;
 			}
+			
+			#main-table{
+				padding-bottom: 20px;
+			}
+			
+			
+			
 		
 		</style>
 
@@ -47,47 +63,60 @@
 				<span class="glyphicon glyphicon-remove-circle form-control-feedback form-action-clear" aria-hidden="true"></span>
 			</div>
 
-			<table id="searchable-table">
-			<thead>
-			  <tr>
-				<th>Name</th>
-				<th>Occupation</th>
-				<th>Nationality</th>
-				<th>Age</th>
-			  </tr>
-			</thead>
+			<div id="main-table" class="table-responsive">
+				<table id="searchable-table" class="table table-hover">
+				<thead>
+				  <tr>
+					<th>ID</th>
+					<th>Titel</th>
+					<th>Komponist</th>
+					<th>Arrangeur</th>
+					<th>Schwierigkeitsgrad</th>
+					<th>Erscheinungsjahr</th>
+					<th>Ablage</th>
+					<th></th>
+				  </tr>
+				</thead>
 
-			<tbody>
-			  <tr>
-				<td>Fabian</td>
-				<td>EGGER</td>
-				<td>Austria</td>
-				<td>21</td>
-			  </tr>
-			  <tr>
-				<td>Heinz</td>
-				<td>EGGER</td>
-				<td>Austria</td>
-				<td>21</td>
-			  </tr>
-			  <tr>
-				<td>Christiane</td>
-				<td>EGGER</td>
-				<td>Austria</td>
-				<td>21</td>
-			  </tr>
-			  <tr>
-				<td>Sarah</td>
-				<td>EGGER</td>
-				<td>Austria</td>
-				<td>21</td>
-			  </tr>
-			</tbody>
-			</table>
+				<tbody>
+				  <tr>
+					<td>Fabian</td>
+					<td>EGGER</td>
+					<td>Austria</td>
+					<td>21</td>
+				  </tr>
+				  <tr>
+					<td>Heinz</td>
+					<td>EGGER</td>
+					<td>Austria</td>
+					<td>21</td>
+				  </tr>
+				  <tr>
+					<td>Christiane</td>
+					<td>EGGER</td>
+					<td>Austria</td>
+					<td>21</td>
+				  </tr>
+				  <?php foreach($res AS $row): ?>
+				  <tr>
+					<td><?php echo $row["id"]; ?></td>
+					<td><?php echo $row["titel"]; ?></td>
+					<td><?php echo $row["komponist"]; ?></td>
+					<td><?php echo $row["arrangeur"]; ?></td>
+					<td><?php echo $row["schwierigkeitsgrad"]; ?></td>
+					<td><?php echo $row["erscheinungsjahr"]; ?></td>
+					<td><?php echo $row["ablage"]; ?></td>
+					<td><a href="#" data-featherlight="data.php?id=<?php echo $row["id"]; ?> .lightbox-ajax">edit</a></td>
+				  </tr>
+				  <?php endforeach; ?>
+				</tbody>
+				</table>
+			</div>
 			
 		</div>
 
     </div>
+	
 	
 
 	</body>

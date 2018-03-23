@@ -18,6 +18,12 @@
     $stmt->execute([]);
     return $stmt->fetchAll();
   }
+  
+  function fetch_noten2($pdo, $id){
+	  $stmt = $pdo->prepare("SELECT * FROM Noten WHERE id = ?");
+	  $stmt->execute([$id]);
+	  return $stmt->fetchAll();
+  }
 
   
 ?>
