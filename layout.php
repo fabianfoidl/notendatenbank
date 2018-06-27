@@ -2,6 +2,21 @@
 
   include "database.php";
   $res = fetch_noten(getConnection());
+  //echo(fetch_gattung(getConnection())[0]['Type']);
+  
+  $it = fetch_gattung(getConnection())[0]['Type'];
+  $rst1 = explode(",", $it);
+  while($elem = each($rst1)){
+	  $rst1[$elem[0]] = str_replace("set('", "", $rst1[$elem[0]]);
+      $rst1[$elem[0]] = str_replace("enum('", "", $rst1[$elem[0]]);
+      $rst1[$elem[0]] = str_replace("')", "", $rst1[$elem[0]]);
+      $rst1[$elem[0]] = str_replace("'", "", $rst1[$elem[0]]);
+  }
+  
+	foreach($rst1 AS $rst1row){
+		echo $rst1row."<br>";
+	}
+  
   
  ?>
 
@@ -68,10 +83,11 @@
 				<thead>
 				  <tr>
 					<th>ID</th>
+                    <th>Gattung</th>
 					<th>Titel</th>
 					<th>Komponist</th>
 					<th>Arrangeur</th>
-					<th>Schwierigkeitsgrad</th>
+					<th>Besetzung</th>
 					<th>Erscheinungsjahr</th>
 					<th>Ablage</th>
 					<th></th>
@@ -100,10 +116,11 @@
 				  <?php foreach($res AS $row): ?>
 				  <tr>
 					<td><?php echo $row["id"]; ?></td>
+                    <td><?php echo $row["gattung"]; ?></td>
 					<td><?php echo $row["titel"]; ?></td>
 					<td><?php echo $row["komponist"]; ?></td>
 					<td><?php echo $row["arrangeur"]; ?></td>
-					<td><?php echo $row["schwierigkeitsgrad"]; ?></td>
+					<td><?php echo $row["besetzung"]; ?></td>
 					<td><?php echo $row["erscheinungsjahr"]; ?></td>
 					<td><?php echo $row["ablage"]; ?></td>
 					<td><a href="#" data-featherlight="data.php?id=<?php echo $row["id"]; ?> .lightbox-ajax">edit</a></td>
