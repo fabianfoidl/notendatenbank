@@ -58,7 +58,7 @@
   }
 
   function fetch_ablage($pdo){
-        $stmt = $pdo->prepare("SELECT CONCAT(a.buchstabe,'-',a.zahl + 1) AS ablage FROM (SELECT substring(ablage,1,1) AS buchstabe, substring(ablage,3,5) AS zahl FROM noten GROUP BY buchstabe HAVING MAX(zahl)) a");
+        $stmt = $pdo->prepare("SELECT CONCAT(a.buchstabe,'-',a.zahl + 1) AS ablage FROM (SELECT substring(ablage,1,1) AS buchstabe, MAX(substring(ablage,3,5)) AS zahl FROM noten GROUP BY buchstabe) a");
         $stmt->execute([]);
         return $stmt->fetchAll();
   }
